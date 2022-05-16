@@ -23,7 +23,7 @@ Params are the best setting in our experiment.
 ```
 python test.py --model model_name
 ```
-Our best model will be uploaded soon.
+Our best model is uploaded.
 
 ### Acknowledgement
 
