@@ -5,7 +5,7 @@ from networks.vnet import VNet
 from test_util import test_all_case
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--root_path', type=str, default='../data/LA/2018LA_Seg_Training Set/', help='Name of Experiment')
+parser.add_argument('--root_path', type=str, default='./data/LA/2018LA_Seg_Training Set/', help='Name of Experiment')
 parser.add_argument('--model', type=str,  default='pln', help='model_name')
 parser.add_argument('--dataset', type=str,  default='la', help='dataset to use')
 parser.add_argument('--gpu', type=str,  default='0', help='GPU to use')
@@ -13,8 +13,8 @@ parser.add_argument('--iteration', type=int,  default=6000, help='GPU to use')
 args = parser.parse_args()
 
 os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
-snapshot_path = "../model_" + args.dataset + "/" + args.model + "/"
-test_save_path = "../model_" + args.dataset + "/prediction/" + args.model + "_post/"
+snapshot_path = "./model_" + args.dataset + "/" + args.model + "/"
+test_save_path = "./model_" + args.dataset + "/prediction/" + args.model + "_post/"
 if not os.path.exists(test_save_path):
     os.makedirs(test_save_path)
 
@@ -47,5 +47,5 @@ def test_calculate_metric(epoch_num):
 if __name__ == '__main__':
     metric = test_calculate_metric(args.iteration)
     print(metric)
-    with open("../model_" + args.dataset + "/prediction.txt", "a") as f:
+    with open("./model_" + args.dataset + "/prediction.txt", "a") as f:
         f.write(args.model + " - " + str(args.iteration) + ": " + ", ".join(str(i) for i in metric) + "\n")

@@ -25,7 +25,7 @@ from dataloaders.lits import LiTS
 from dataloaders.kits import KiTS
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--root_path', type=str, default='../data/LA/processed_h5/', help='data load root path')
+parser.add_argument('--root_path', type=str, default='./data/LA/processed_h5/', help='data load root path')
 parser.add_argument('--exp', type=str, default='pln', help='name of experiment')
 parser.add_argument('--dataset', type=str, default='la', help='dataset to use')
 parser.add_argument('--label_num', type=int, default=16, help='number of labeled samples')
@@ -55,7 +55,7 @@ parser.add_argument('--gpu', type=str, default='0', help='GPU to use')
 args = parser.parse_args()
 
 train_data_path = args.root_path
-snapshot_path = "../model_" + args.dataset + "/" + args.exp + "/"
+snapshot_path = "./model_" + args.dataset + "/" + args.exp + "/"
 
 os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
 use_cuda = torch.cuda.is_available()

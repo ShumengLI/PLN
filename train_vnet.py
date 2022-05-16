@@ -20,7 +20,7 @@ from utils.losses import dice_loss
 from dataloaders.la_heart import LAHeart, RandomCrop, CenterCrop, RandomRotFlip, ToTensor, TwoStreamBatchSampler
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--root_path', type=str, default='../data/LA/2018LA_Seg_Training Set/', help='data load root path')
+parser.add_argument('--root_path', type=str, default='./data/LA/2018LA_Seg_Training Set/', help='data load root path')
 parser.add_argument('--exp', type=str, default='vnet', help='name of experiment')
 parser.add_argument('--dataset', type=str, default='la', help='dataset to use')
 
@@ -34,7 +34,7 @@ parser.add_argument('--gpu', type=str, default='0', help='GPU to use')
 args = parser.parse_args()
 
 train_data_path = args.root_path
-snapshot_path = "../model_" + args.dataset + "/" + args.exp + "/"
+snapshot_path = "./model_" + args.dataset + "/" + args.exp + "/"
 
 os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
 batch_size = args.batch_size * len(args.gpu.split(','))
