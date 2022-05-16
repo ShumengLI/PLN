@@ -92,7 +92,6 @@ def count_parameters(model):
 def worker_init_fn(worker_id):
     random.seed(args.seed+worker_id)
 
-
 if __name__ == "__main__":
     # make logger file
     if not os.path.exists(snapshot_path):
@@ -100,9 +99,8 @@ if __name__ == "__main__":
         os.makedirs(snapshot_path + 'saveimg')
     if os.path.exists(snapshot_path + '/code'):
         shutil.rmtree(snapshot_path + '/code')
-    shutil.copytree('.', snapshot_path + '/code', shutil.ignore_patterns(['.git','__pycache__']))
 
-    logging.basicConfig(filename=snapshot_path+"/log.txt", level=logging.INFO,
+    logging.basicConfig(filename=snapshot_path + "/log.txt", level=logging.INFO,
                         format='[%(asctime)s.%(msecs)03d] %(message)s', datefmt='%H:%M:%S')
     logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
     logging.info(str(args))
@@ -112,7 +110,7 @@ if __name__ == "__main__":
         patch_size = (112, 112, 80)
         db_train = LAHeart(base_dir=train_data_path,
                            split='train',
-                           transform = transforms.Compose([
+                           transform=transforms.Compose([
                               RandomRotFlip(),
                               RandomCrop(patch_size),
                               ToTensor(),
