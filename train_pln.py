@@ -26,7 +26,7 @@ from dataloaders.kits import KiTS
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--root_path', type=str, default='./data/LA/processed_h5/', help='data load root path')
-parser.add_argument('--exp', type=str, default='pln', help='name of experiment')
+parser.add_argument('--exp', type=str, default='pln_2', help='name of experiment')
 parser.add_argument('--dataset', type=str, default='la', help='dataset to use')
 parser.add_argument('--label_num', type=int, default=16, help='number of labeled samples')
 
@@ -237,8 +237,8 @@ if __name__ == "__main__":
                 outputs = model(volume_batch)
                 outputs_soft = F.softmax(outputs, dim=1)
                 with torch.no_grad():
-                    ema_output = ema_model(ema_inputs)
-                    ema_outputs_soft = F.softmax(outputs, dim=1)
+                    ema_outputs = ema_model(ema_inputs)
+                    ema_outputs_soft = F.softmax(ema_outputs, dim=1)
 
                 ### Parasitic-like Mechanism
                 # Pseudo-labels Generation
@@ -259,7 +259,7 @@ if __name__ == "__main__":
                 supervised_loss = 0.5 * (loss_seg_ce + loss_seg_dice * args.w_dice)
 
                 consistency_weight = get_current_consistency_weight(iter_num//150)
-                consistency_dist = consistency_criterion(outputs, ema_output)
+                consistency_dist = consistency_criterion(outputs, ema_outputs)
                 consistency_dist = torch.mean(consistency_dist)
                 consistency_loss = consistency_weight * consistency_dist
 
