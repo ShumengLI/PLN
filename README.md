@@ -27,4 +27,4 @@ Our best model is uploaded.
 
 ### Acknowledgement
 
-Part of the code is origin from [UA-MT](https://github.com/yulequan/UA-MT) and [VoxelMorph-torch](https://github.com/zuzhiang/VoxelMorph-torch). 
+Part of the code is originally from [UA-MT](https://github.com/yulequan/UA-MT) and [VoxelMorph-torch](https://github.com/zuzhiang/VoxelMorph-torch). 
